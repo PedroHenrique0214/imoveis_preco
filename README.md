@@ -29,11 +29,43 @@ Com os dados em *raw*, fizemos nosso primeiro notebook e realizamos a leitura do
 
 ```python
 # Nosso código para pegar e ler os dados em csv salvos no nosso raw que pegamos do bucket
-df = spark.read.format("csv").load("/Volumes/raw/dados_sp/dados_sp/sp_venda.csv")
-df.display()
+df = spark.read.format("csv") \
+  .option("delimiter", ";") \
+  .option("header", "true") \
+  .load("/Volumes/raw/dados_sp/dados_sp/sp_venda.csv")
 ```
 
 - As colunas continha caracteres invalidos, impossibilitando o salvamento em bronze.
-- Após a modificação dos nomes das colunas conseguimos por fim salvar em bronze.
 
+```python
+# Mudei os nomes das colunas com esse código
+df = df.withColumnRenamed("Numero-indice Total", "numero_indice_total") \
+    .withColumnRenamed("Numero-indice 1D", "numero_indice_1D") \
+    .withColumnRenamed("Numero-indice 2D", "numero_indice_2D") \
+    .withColumnRenamed("Numero-indice 3D", "numero_indice_3D") \
+    .withColumnRenamed("Numero-indice 4D", "numero_indice_4D") \
+    .withColumnRenamed("Var. mensal (%) Total", "variacao_total_mensal") \
+    .withColumnRenamed("Var. mensal (%) 1D", "var_mensal_1D") \
+    .withColumnRenamed("Var. mensal (%) 2D", "var_mensal_2D") \
+    .withColumnRenamed("Var. mensal (%) 3D", "var_mensal_3D") \
+    .withColumnRenamed("Var. mensal (%) 4D", "var_mensal_4D") \
+    .withColumnRenamed("Var. em 12 meses (%) Total", "variacao_total_anual") \
+    .withColumnRenamed("Var. em 12 meses (%) 1D", "variacao_anual_1D") \
+    .withColumnRenamed("Var. em 12 meses (%) 2D", "variacao_anual_2D") \
+    .withColumnRenamed("Var. em 12 meses (%) 3D", "variacao_anual_3D") \
+    .withColumnRenamed("Var. em 12 meses (%) 4D", "variacao_anual_4D") \
+    .withColumnRenamed("Preco medio (R$/m2) Total", "preco_medio_m2_total") \
+    .withColumnRenamed("Preco medio (R$/m2) 1D", "preco_medio_m2_1D") \
+    .withColumnRenamed("Preco medio (R$/m2) 2D", "preco_medio_m2_2D") \
+    .withColumnRenamed("Preco medio (R$/m2) 3D", "preco_medio_m2_3D") \
+    .withColumnRenamed("Preco medio (R$/m2) 4D", "preco_medio_m2_4D") \
+    .withColumnRenamed("Data", "data")
+```
+  
+- Após a modificação dos nomes das colunas conseguimos por fim salvar em bronze.
+```python
+# Salvamos diretamente no bronze
+df.coalesce(1).write.format("delta").saveAsTable("bronze.dados_sp.sp_venda")
+```
+- Fizemos o mesmo procedimento com os dados de aluguel.
 
