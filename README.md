@@ -14,6 +14,8 @@ Cluster criado
 
 Ingestão dos dados no raw com external location
 ![criando o volume com o external location](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/1a1c4c65-20d5-42b5-978a-50a68710ab12)
+
+
 Nosso catalog ficou assim
 ![raw com external location](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/e58f9963-f80d-4199-9153-84fa98228b55)
 
