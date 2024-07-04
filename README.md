@@ -26,6 +26,13 @@ Fiz o volume dos dados na pasta *raw*.
 
 # Leitura dos dados e envio para bronze
 Com os dados em *raw*, fizemos nosso primeiro notebook e realizamos a leitura dos dados usando "spark" e modificamos os nomes das colunas do dataframe:
+
+```python
+# Nosso código para pegar e ler os dados em csv salvos no nosso raw que pegamos do bucket
+df = spark.read.format("csv").load("/Volumes/raw/dados_sp/dados_sp/sp_venda.csv")
+df.display()
+```
+
 - As colunas continha caracteres invalidos, impossibilitando o salvamento em bronze.
 - Após a modificação dos nomes das colunas conseguimos por fim salvar em bronze.
 
