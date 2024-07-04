@@ -9,10 +9,12 @@ raw -> bronze -> silver -> gold
 Criei um cluster usando a versão trial do databricks e criamos novo workspace e nosso catalog para ingestão das tabelas. Após isso setamos nosso external location com o GCP fazendo uma conexão com o buckets que continha todas os nossos arquivos csv.
 Fiz o volume dos dados na pasta *raw*.
 
-Cluster criado 
+* Cluster criado
+
 ![cluster criado](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/5665988d-3d99-4925-9c06-3c642c26d217)
 
-Ingestão dos dados no raw com external location
+* Ingestão dos dados no raw com external location
+
 ![criando o volume com o external location](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/1a1c4c65-20d5-42b5-978a-50a68710ab12)
 
 
