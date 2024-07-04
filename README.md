@@ -12,6 +12,12 @@ Fiz o volume dos dados na pasta *raw*.
 Cluster criado 
 ![cluster criado](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/5665988d-3d99-4925-9c06-3c642c26d217)
 
+Ingestão dos dados no raw com external location
+![criando o volume com o external location](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/1a1c4c65-20d5-42b5-978a-50a68710ab12)
+Nosso catalog ficou assim
+![raw com external location](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/e58f9963-f80d-4199-9153-84fa98228b55)
+
+
 
 # Leitura dos dados e envio para bronze
 Com os dados em *raw*, fizemos nosso primeiro notebook e realizamos a leitura dos dados usando "spark" e modificamos os nomes das colunas do dataframe:
