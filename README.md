@@ -67,5 +67,4 @@ df = df.withColumnRenamed("Numero-indice Total", "numero_indice_total") \
 # Salvamos diretamente no bronze
 df.coalesce(1).write.format("delta").saveAsTable("bronze.dados_sp.sp_venda")
 ```
-- Fizemos o mesmo procedimento com os dados de aluguel.
-
+- Fizemos o mesmo procedimento com os dados de aluguel e após isso o mesmo procedimento com os dados coletados do Rio de Janeiro.
