@@ -1,5 +1,9 @@
 # Databricks notebook source
-# DBTITLE 1,Trazendo do raw para bronze dados RJ
+# MAGIC %md
+# MAGIC Pegando os dados do Bucket e passando para o bronze
+
+# COMMAND ----------
+
 # Vamos ver se o dataset tá no arquivo certo
 dbutils.fs.ls("/Volumes/raw/dados_rj/dados_rj/")
 
