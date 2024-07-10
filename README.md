@@ -48,7 +48,7 @@ df = spark.read.format("csv") \
   .load("/Volumes/raw/dados_sp/dados_sp/sp_venda.csv")
 ```
 
-- As colunas continha caracteres invalidos, impossibilitando o salvamento em bronze.
+- As colunas continham caracteres invalidos, impossibilitando o salvamento em bronze.
 
 ```python
 # Mudei os nomes das colunas com esse código
@@ -81,3 +81,17 @@ df = df.withColumnRenamed("Numero-indice Total", "numero_indice_total") \
 df.coalesce(1).write.format("delta").saveAsTable("bronze.dados_sp.sp_venda")
 ```
 - Fizemos o mesmo procedimento com os dados de aluguel e após isso o mesmo procedimento com os dados coletados do Rio de Janeiro.
+
+# Tratando os dados para a camada Silver
+
+No tratamento dos dados de bronze para silver, realizei algumas modificações nos dados e criei novas colunas para facilitar uma futura análise.
+
+- Criação de novas colunas de mês e ano
+```python
+df_sp_venda = df_sp_venda.withColumn("mes", split(df_sp_venda["data"], ", ").getItem(0)) \
+                        .withColumn("ano", split(df_sp_venda["data"], ", ").getItem(1))
+
+df_sp_venda.display()
+```
+
+- Realizei alguns tratamentos nos dados, os mesmo continham caractéres invalidos no dataframe, que impossibilitavam a conversão dos dados. Esse foi um processo demorado, pois muitas strings continham pontos ('.') e informações inválidas, impossibilitando a transformação em float ou date. Após muitas transformações no meu dataset, consegui realizar as modificações que gostaria e realizei o salvamento dos dados em Silver. O código completo vocês poderão ver nos files.
