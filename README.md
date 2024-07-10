@@ -2,6 +2,8 @@
 
 A partir de dados obtidos na FIPE (Fundação Instituto de pesquisas econômicas), sobre a relação de preços do metro de imóveis em São Paulo e outras cidades do Brasil, construimos um datalake e montamos um medalion architecture ralizando uma external location com *buckets* no GCP.
 
+Link do site da FIPE: https://www.fipe.org.br/
+
 O processo completo de ingestão de dados foi o seguinte:
 raw -> bronze -> silver -> gold
 
