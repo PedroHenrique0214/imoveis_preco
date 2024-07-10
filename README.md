@@ -9,7 +9,7 @@ Ao final do projeto respondi algumas questões como:
 - "Qual a relação da quantidade de dormitórios com o preço do metro quadrado?"
 - "Existe uma tendência de preço que acompanha ambas as cidades?"
 
-São questões simples, mas o projeto tem como principal objeto a criação de um projeto de datalake utilizando o Databricks + Google Cloud
+São questões simples, mas o projeto tem como principal objeto a criação de um datalake utilizando o Databricks + Google Cloud, o processo de ETL (Extração, transformação e Carregamento) dos dados e a criação de um workflow.
 
 Link do site da FIPE: https://www.fipe.org.br/
 
