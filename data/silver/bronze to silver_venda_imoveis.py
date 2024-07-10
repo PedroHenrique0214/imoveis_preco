@@ -164,7 +164,7 @@ SELECT
     CAST(preco_medio_m2_2D AS Float) AS preco_medio_m2_2D,
     CAST(preco_medio_m2_3D AS Float) AS preco_medio_m2_3D,
     CAST(preco_medio_m2_4D AS Float) AS preco_medio_m2_4D
-FROM temp_table_sp
+FROM temp_table_rj
 """
 
 df_rj_venda_silver = spark.sql(query)
