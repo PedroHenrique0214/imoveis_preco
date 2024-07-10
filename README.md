@@ -120,3 +120,5 @@ FROM temp_table_sp
 ```
 
 - Realizei mais alguns tratamentos nos dados, pois os mesmo continham caractéres invalidos no dataframe, que impossibilitavam a conversão dos mesmos. Esse foi um processo demorado, pois muitas strings continham pontos ('.') e informações inválidas ('mar�o. 2008'), impossibilitando a transformação em float ou date. Após muitas transformações no meu dataset, consegui realizar as modificações que gostaria e realizei o salvamento dos dados em Silver. O código completo vocês poderão ver nos files.
+
+- Eu também alterei a forma como os dados foram salvos. Se em bronze, os dados estavem separados por cidade, na camada silver os dados já estavam separados por 'venda' e 'aluguel', do modo como serão feitas as análises na camada gold. 
