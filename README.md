@@ -94,4 +94,29 @@ df_sp_venda = df_sp_venda.withColumn("mes", split(df_sp_venda["data"], ", ").get
 df_sp_venda.display()
 ```
 
-- Realizei alguns tratamentos nos dados, os mesmo continham caractéres invalidos no dataframe, que impossibilitavam a conversão dos dados. Esse foi um processo demorado, pois muitas strings continham pontos ('.') e informações inválidas, impossibilitando a transformação em float ou date. Após muitas transformações no meu dataset, consegui realizar as modificações que gostaria e realizei o salvamento dos dados em Silver. O código completo vocês poderão ver nos files.
+- Criei uma tabela temporária em SQL para realizar algumas conversões nos dados e alterar a forma da minha tabela:
+```python
+query = """
+SELECT 
+    CAST(`datas` AS String) AS datas,
+    CAST(`mes` AS String) AS mes,
+    CAST(`ano` AS String) AS ano,
+    CAST(variacao_total_mensal AS Float) AS variacao_total_mensal,
+    CAST(var_mensal_1D AS Float) AS var_mensal_1D,
+    CAST(var_mensal_2D AS Float) AS var_mensal_2D,
+    CAST(var_mensal_3D AS Float) AS var_mensal_3D,
+    CAST(var_mensal_4D AS Float) AS var_mensal_4D,
+    CAST(variacao_total_anual AS Float) AS variacao_total_anual,
+    CAST(variacao_anual_1D AS Float) AS variacao_anual_1D,
+    CAST(variacao_anual_2D AS Float) AS variacao_anual_2D,
+    CAST(variacao_anual_3D AS Float) AS variacao_anual_3D,
+    CAST(variacao_anual_4D AS Float) AS variacao_anual_4D,
+    CAST(preco_medio_m2_total AS Float) AS preco_medio_m2_total,
+    CAST(preco_medio_m2_1D AS Float) AS preco_medio_m2_1D,
+    CAST(preco_medio_m2_2D AS Float) AS preco_medio_m2_2D,
+    CAST(preco_medio_m2_3D AS Float) AS preco_medio_m2_3D,
+    CAST(preco_medio_m2_4D AS Float) AS preco_medio_m2_4D
+FROM temp_table_sp
+```
+
+- Realizei mais alguns tratamentos nos dados, pois os mesmo continham caractéres invalidos no dataframe, que impossibilitavam a conversão dos mesmos. Esse foi um processo demorado, pois muitas strings continham pontos ('.') e informações inválidas ('mar�o. 2008'), impossibilitando a transformação em float ou date. Após muitas transformações no meu dataset, consegui realizar as modificações que gostaria e realizei o salvamento dos dados em Silver. O código completo vocês poderão ver nos files.
