@@ -1,11 +1,21 @@
 # Construção de uma medalion architecture no Databricks + Google Cloud
 
-A partir de dados obtidos na FIPE (Fundação Instituto de pesquisas econômicas), sobre a relação de preços do metro de imóveis em São Paulo e outras cidades do Brasil, construimos um datalake e montamos um medalion architecture ralizando uma external location com *buckets* no GCP.
+### Introdução
+
+A partir de dados obtidos na FIPE (Fundação Instituto de pesquisas econômicas), sobre a relação de preços do metro de imóveis em São Paulo e Rio de Janeiro, construi um datalake e montei um medalion architecture ralizando uma external location com *buckets* no GCP. Após isso criei um workflow com o databricks para automatizar o processo apenas atualizando os dados subindo os mesmos no bucket e realizei uma analise em cima dos dados obtidos através da última camada para encontrar alguns insights relevantes dos dados. 
+
+Ao final do projeto respondi algumas questões como:
+- "Qual o valor do metro quadrado ao longo dos anos? E como a variação foi diferente em cada cidade?"
+- "Qual a relação da quantidade de dormitórios com o preço do metro quadrado?"
+- "Existe uma tendência de preço que acompanha ambas as cidades?"
+São questões simples, mas o projeto tem como principal objeto a criação de um projeto de datalake utilizando o Databricks + Google Cloud
 
 Link do site da FIPE: https://www.fipe.org.br/
 
 O processo completo de ingestão de dados foi o seguinte:
 raw -> bronze -> silver -> gold
+
+
 
 # Configuração do Databricks
 Criei um cluster usando a versão trial do databricks e criamos novo workspace e nosso catalog para ingestão das tabelas. Após isso setamos nosso external location com o GCP fazendo uma conexão com o buckets que continha todas os nossos arquivos csv.
