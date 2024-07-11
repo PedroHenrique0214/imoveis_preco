@@ -166,5 +166,49 @@ df_vendas = df_vendas.orderBy("datas")
 Após a conclusão de todo o processo de criação do datalake e do medallion archtecture, fiz uma breve análise em cima dos dados transformados. Criei um notebook no databricks e utilizei comandos SQL e funções do próprio databricks para criar gráficos em cima dos dados, possiblitando responder algumas de nossas questões iniciais. Os códigos em SQL podem ser vistos na pasta gold do repositório.
 
 *Análise de Venda*
-"C:\Users\pedro\OneDrive\Documentos\Pós Graduação\MVP\Engenharia de dados\Gráficos\venda\m2_preco.png"
 
+- Preço médio do metro quadrado
+
+![m2_preco](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/0a86c44c-c55d-459a-b2f2-0837e00c95e8)
+
+- Podemos notar até alguns anos atrás, o preço do metro quadrado era maior no Rio de Janeiro, apenas algum tempo atrás que São Paulo obteve um preço maior em relação a outra cidade. Apesar disso, podemos notar que a tendência de aumento de preço se manteve em ambas as cidades.
+
+
+- Preço por dormitório
+
+![preco_por_dormitorio](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/747bda25-6a76-4759-a07a-c33208c36e14)
+
+- Habitações com 1 dormitório tendem a ser mais caros do que os que possuem 2 ou 3, mas a situação muda com habitações com 4 dormitórios.
+
+
+- Variação anual do valor do metro quadrado
+
+![var_m2_venda](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/37b0abdf-bb1a-413a-8367-04785b315101)
+
+- O preço do metro quadrado deu apenas uma pequena diminuida na cidade do Rio de Janeiro durante os anos de 2015 até 2019, período que São Paulo, ainda com aumentos, obteve o posto de maior preço do metro quadrado entre as duas cidades.
+
+
+*Análise de Aluguel*
+
+- Preço médio por metro quadrado
+
+![preco_medio_aluguel_m2](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/35b698ad-2889-4e6a-9aad-6befd34841e2)
+
+- A situação é parecida com a de venda, com o preço para aluguel do metro quadrado de São Paulo apenas superando o Rio de Janeiro nos últimos anos.
+
+
+- Preço por dormitório
+
+![m2_por_quarto_aluguel](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/9e3ba504-ff9b-4637-b804-18671bef55ab)
+
+- Novamente as tendências são parecidas de venda e aluguel por metro quadrado.
+
+
+*Dashboard de ambas as análises feitas no databricks*
+
+- Venda
+![dashboard de vendas](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/b26efdf7-0c4c-42e1-a0e6-34db8885c23f)
+
+
+- Aluguel
+![dashboard de aluguel](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/26bd4fba-44da-4002-b7fe-20597053cfb9)
