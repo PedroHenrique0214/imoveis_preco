@@ -161,6 +161,14 @@ df_vendas = df_vendas.orderBy("datas")
 
 - Realizei o mesmo procedimento para a tabela de aluguel e salvei ambas. Pronto, temos nossas informações prontas para realizar um análise do mercado imobiliário dessas duas cidades.
 
+*Workflow*
+
+Assim ficou o fluxo final de ETL dos nossos dados no databricks. Foi craido um job para que os notebooks rodem automáticamente para cada atualização dos nossos dados em raw, para manter as informações atualizadas para uma futura análise do mercado imobiliário.
+![job](https://github.com/PedroHenrique0214/imoveis_preco/assets/155765414/678c2bf9-0cfe-4b04-8276-afac9ffc0872)
+
+Em um futuro interesse, podem ser colocados dados de direfentes capitais do Brasil, para que se possa aumentar a capacidade de nossa análise, criando mais jobs e automatizando todas essas informações no nosso workflow.
+
+
 # Análise dos dados
 
 Após a conclusão de todo o processo de criação do datalake e do medallion archtecture, fiz uma breve análise em cima dos dados transformados. Criei um notebook no databricks e utilizei comandos SQL e funções do próprio databricks para criar gráficos em cima dos dados, possiblitando responder algumas de nossas questões iniciais. Os códigos em SQL podem ser vistos na pasta gold do repositório.
