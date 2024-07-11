@@ -38,7 +38,7 @@ Fiz o volume dos dados na pasta *raw*.
 
 
 # Leitura dos dados e envio para bronze
-Com os dados em *raw*, fizemos nosso primeiro notebook e realizamos a leitura dos dados usando "spark" e modificamos os nomes das colunas do dataframe:
+Com os dados em *raw*, fizemos nosso primeiro notebook e realizamos a leitura dos dados usando *spark* e modificamos os nomes das colunas do dataframe:
 
 ```python
 # Nosso código para pegar e ler os dados em csv salvos no nosso raw que pegamos do bucket
@@ -48,7 +48,7 @@ df = spark.read.format("csv") \
   .load("/Volumes/raw/dados_sp/dados_sp/sp_venda.csv")
 ```
 
-- As colunas continham caracteres invalidos, impossibilitando o salvamento em bronze.
+- As colunas continham caracteres invalidos, impossibilitando o salvamento em bronze, então usei uma função spark para renomear o nome das colunas.
 
 ```python
 # Mudei os nomes das colunas com esse código
@@ -75,7 +75,7 @@ df = df.withColumnRenamed("Numero-indice Total", "numero_indice_total") \
     .withColumnRenamed("Data", "data")
 ```
   
-- Após a modificação dos nomes das colunas conseguimos por fim salvar em bronze.
+- Após a modificação dos nomes das colunas conseguimos por fim salvar em bronze. Salvei os dados no formato delta no catalogo do databricks como tabela, para ficar acessível para quem quiser atualizar os dados diretamente de bronze para outros propósitos.
 ```python
 # Salvamos diretamente no bronze
 df.coalesce(1).write.format("delta").saveAsTable("bronze.dados_sp.sp_venda")
@@ -160,3 +160,11 @@ df_vendas = df_vendas.orderBy("datas")
 ```
 
 - Realizei o mesmo procedimento para a tabela de aluguel e salvei ambas. Pronto, temos nossas informações prontas para realizar um análise do mercado imobiliário dessas duas cidades.
+
+# Análise dos dados
+
+Após a conclusão de todo o processo de criação do datalake e do medallion archtecture, fiz uma breve análise em cima dos dados transformados. Criei um notebook no databricks e utilizei comandos SQL e funções do próprio databricks para criar gráficos em cima dos dados, possiblitando responder algumas de nossas questões iniciais. Os códigos em SQL podem ser vistos na pasta gold do repositório.
+
+*Análise de Venda*
+
+
