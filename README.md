@@ -119,6 +119,44 @@ SELECT
 FROM temp_table_sp
 ```
 
+
 - Realizei mais alguns tratamentos nos dados, pois os mesmo continham caractéres invalidos no dataframe, que impossibilitavam a conversão dos mesmos. Esse foi um processo demorado, pois muitas strings continham pontos ('.') e informações inválidas ('mar�o. 2008'), impossibilitando a transformação em float ou date. Após muitas transformações no meu dataset, consegui realizar as modificações que gostaria e realizei o salvamento dos dados em Silver. O código completo vocês poderão ver nos files.
 
-- Eu também alterei a forma como os dados foram salvos. Se em bronze, os dados estavem separados por cidade, na camada silver os dados já estavam separados por 'venda' e 'aluguel', do modo como serão feitas as análises na camada gold. 
+- Eu também alterei a forma como os dados foram salvos. Se em bronze, os dados estavem separados por cidade, na camada silver os dados já estavam separados por 'venda' e 'aluguel', do modo como serão feitas as análises na camada gold.
+
+# Transformando os dados para a camada Gold
+
+- Importei os dados da minha camada silver com spark para fazer as transformações finais e enviar para a camada gold as minhas duas tabelas, venda e aluguel.
+
+- Importei algumas funções do spark para realizar o arredondamento dos valores floats para apenas duas casas decimais após a vírgula, para facilitar a visualização dos dados.
+```python
+from pyspark.sql.functions import round, col
+from pyspark.sql.types import DoubleType, FloatType
+
+for column_name in df_sp.columns:
+    if isinstance(df_sp.schema[column_name].dataType, (DoubleType, FloatType)):
+        df_sp = df_sp.withColumn(column_name, round(col(column_name), 4))
+
+
+for column_name in df_rj.columns:
+    if isinstance(df_rj.schema[column_name].dataType, (DoubleType, FloatType)):
+        df_rj = df_rj.withColumn(column_name, round(col(column_name), 4))
+```
+
+- Após isso, criei uma nova coluna em cada tabela, de São Paulo e Rio de Janeiro, informando o nome da cidade em cada uma delas, para realizar após isso a união de ambas e criar uma única tabela de venda com as informações de ambas as cidades. Utilizei a função lit do spark e após isso a union para fundir as duas tabelas, como no exemplo a seguir.
+```python
+from pyspark.sql.functions import lit
+
+# Colocando uma coluna com a cidade
+df_sp = df_sp.withColumn("Cidade", lit("São Paulo"))
+
+df_rj = df_rj.withColumn("Cidade", lit("Rio de Janeiro"))
+
+# Unindo as duas tabelas
+df_vendas = df_sp.union(df_rj)
+
+# Ordena pelo campo 'date'
+df_vendas = df_vendas.orderBy("datas")
+```
+
+- Realizei o mesmo procedimento para a tabela de aluguel e salvei ambas. Pronto, temos nossas informações prontas para realizar um análise do mercado imobiliário dessas duas cidades.
