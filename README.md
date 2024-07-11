@@ -166,5 +166,5 @@ df_vendas = df_vendas.orderBy("datas")
 Após a conclusão de todo o processo de criação do datalake e do medallion archtecture, fiz uma breve análise em cima dos dados transformados. Criei um notebook no databricks e utilizei comandos SQL e funções do próprio databricks para criar gráficos em cima dos dados, possiblitando responder algumas de nossas questões iniciais. Os códigos em SQL podem ser vistos na pasta gold do repositório.
 
 *Análise de Venda*
-
+"C:\Users\pedro\OneDrive\Documentos\Pós Graduação\MVP\Engenharia de dados\Gráficos\venda\m2_preco.png"
 
